@@ -52,7 +52,7 @@ def fetch(limit=50):
                         'description': f"{titles[i].strip()} internship at {companies[i].strip()}",
                         'apply_url': link,
                         'posted_at': '',
-                        'tags': [],
+                        'tags': [url.split('/')[-1].replace('-internship', '').replace('-', ' ')],
                     })
             except Exception:
                 continue

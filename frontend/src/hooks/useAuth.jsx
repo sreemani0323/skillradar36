@@ -53,12 +53,18 @@ export function AuthProvider({ children }) {
 
   const signInWithGoogle = async () => {
     if (!isSupabaseConfigured()) return;
-    await supabase.auth.signInWithOAuth({ provider: 'google' });
+    await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: { redirectTo: `${window.location.origin}/dashboard` },
+    });
   };
 
   const signInWithGitHub = async () => {
     if (!isSupabaseConfigured()) return;
-    await supabase.auth.signInWithOAuth({ provider: 'github' });
+    await supabase.auth.signInWithOAuth({
+      provider: 'github',
+      options: { redirectTo: `${window.location.origin}/dashboard` },
+    });
   };
 
   const signOut = async () => {

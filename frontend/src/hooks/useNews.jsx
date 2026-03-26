@@ -3,7 +3,15 @@ import { useState, useEffect } from 'react';
 const HN_API = 'https://hn.algolia.com/api/v1/search';
 const DEVTO_API = 'https://dev.to/api/articles';
 
-const TECH_TAGS = ['ai', 'machine learning', 'react', 'python', 'javascript', 'typescript', 'docker', 'kubernetes', 'llm', 'gpt', 'rust', 'golang', 'nextjs', 'node', 'aws', 'devops', 'framework', 'programming'];
+const CATEGORY_QUERIES = {
+  all: 'programming OR developer OR software',
+  ai: 'artificial intelligence OR machine learning OR deep learning OR GPT OR LLM',
+  python: 'python programming',
+  react: 'react framework OR reactjs',
+  javascript: 'javascript OR typescript OR nodejs',
+  devops: 'devops OR docker OR kubernetes OR cloud',
+  rust: 'rust programming language',
+};
 
 /**
  * Fetch tech news from Hacker News + Dev.to
@@ -19,52 +27,61 @@ export function useNews(category = 'all') {
       setLoading(true);
       const results = [];
 
+      // Hacker News
       try {
-        // Hacker News — top tech stories
-        const query = category === 'all' ? 'programming' : category;
-        const hnResp = await fetch(`${HN_API}?query=${encodeURIComponent(query)}&tags=story&hitsPerPage=15`);
-        const hnData = await hnResp.json();
-
-        (hnData.hits || []).forEach(hit => {
-          if (!hit.title || !hit.url) return;
-          results.push({
-            id: `hn-${hit.objectID}`,
-            title: hit.title,
-            url: hit.url,
-            source: 'Hacker News',
-            date: hit.created_at ? new Date(hit.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '',
-            points: hit.points || 0,
-            summary: '',
+        const query = CATEGORY_QUERIES[category] || CATEGORY_QUERIES.all;
+        const hnResp = await fetch(`${HN_API}?query=${encodeURIComponent(query)}&tags=story&hitsPerPage=15&numericFilters=points>10`);
+        if (hnResp.ok) {
+          const hnData = await hnResp.json();
+          (hnData.hits || []).forEach(hit => {
+            // Skip items without valid URL
+            const url = hit.url || `https://news.ycombinator.com/item?id=${hit.objectID}`;
+            if (!hit.title) return;
+            results.push({
+              id: `hn-${hit.objectID}`,
+              title: hit.title,
+              url,
+              source: 'Hacker News',
+              date: hit.created_at ? new Date(hit.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '',
+              timestamp: hit.created_at ? new Date(hit.created_at).getTime() : 0,
+              points: hit.points || 0,
+              comments: hit.num_comments || 0,
+              summary: '',
+            });
           });
-        });
+        }
       } catch (e) {
         console.warn('HN fetch failed:', e);
       }
 
+      // Dev.to
       try {
-        // Dev.to — latest articles
         const tag = category === 'all' ? '' : `&tag=${category}`;
-        const devResp = await fetch(`${DEVTO_API}?per_page=10&top=7${tag}`);
-        const devData = await devResp.json();
-
-        (devData || []).forEach(item => {
-          results.push({
-            id: `dev-${item.id}`,
-            title: item.title,
-            url: item.url,
-            source: 'Dev.to',
-            date: item.published_at ? new Date(item.published_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '',
-            points: item.positive_reactions_count || 0,
-            summary: item.description || '',
-            author: item.user?.name || '',
+        const devResp = await fetch(`${DEVTO_API}?per_page=12&top=7${tag}`);
+        if (devResp.ok) {
+          const devData = await devResp.json();
+          (devData || []).forEach(item => {
+            if (!item.title || !item.url) return;
+            results.push({
+              id: `dev-${item.id}`,
+              title: item.title,
+              url: item.url,
+              source: 'Dev.to',
+              date: item.published_at ? new Date(item.published_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '',
+              timestamp: item.published_at ? new Date(item.published_at).getTime() : 0,
+              points: item.positive_reactions_count || 0,
+              comments: item.comments_count || 0,
+              summary: item.description || '',
+              author: item.user?.name || '',
+            });
           });
-        });
+        }
       } catch (e) {
         console.warn('Dev.to fetch failed:', e);
       }
 
-      // Sort by points/reactions (engagement)
-      results.sort((a, b) => b.points - a.points);
+      // Sort by recency first, then engagement
+      results.sort((a, b) => b.timestamp - a.timestamp);
 
       if (!cancelled) {
         setArticles(results);

@@ -69,10 +69,11 @@ def extract_skills(description, tags=None):
     return sorted(list(found))
 
 
-def classify_domain(skills):
+def classify_domain(skills, title=""):
     """
     Classify a job into a domain based on its extracted skills.
     Uses priority order from config.DOMAIN_SKILL_MAP.
+    Provides a fallback to title-based classification.
     """
     from config import DOMAIN_SKILL_MAP
 
@@ -85,8 +86,25 @@ def classify_domain(skills):
         if score > 0:
             scores[domain] = score
 
-    if not scores:
-        return 'General'
+    if scores:
+        # Return domain with highest score
+        return max(scores, key=scores.get)
+        
+    # Fallback: Try to classify by title if no skills matched
+    if title:
+        title_lower = title.lower()
+        if any(x in title_lower for x in ['frontend', 'backend', 'full stack', 'web', 'react', 'node', 'software', 'developer']):
+            return 'Full Stack'
+        if any(x in title_lower for x in ['data', 'analytics', 'bi', 'business intelligence']):
+            return 'Data Science'
+        if any(x in title_lower for x in ['ai', 'ml', 'machine learning', 'computer vision', 'nlp']):
+            return 'AI/ML'
+        if any(x in title_lower for x in ['security', 'cyber', 'pentest', 'soc']):
+            return 'Cybersecurity'
+        if any(x in title_lower for x in ['devops', 'cloud', 'sre', 'aws', 'infrastructure']):
+            return 'Cloud/DevOps'
+        if any(x in title_lower for x in ['llm', 'genai', 'prompt']):
+            return 'LLM/GenAI'
 
-    # Return domain with highest score
-    return max(scores, key=scores.get)
+    return 'General'
+

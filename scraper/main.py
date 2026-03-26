@@ -57,7 +57,7 @@ def run_pipeline(sources=None, dry_run=False):
     for job in all_jobs:
         skills = extract_skills(job.get('description', ''), job.get('tags'))
         job['skills'] = skills
-        job['domain'] = classify_domain(skills)
+        job['domain'] = classify_domain(skills, job.get('title', ''))
         skills_found += len(skills)
         processed += 1
 
