@@ -1,36 +1,50 @@
-import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { Suspense, lazy } from 'react';
 import { ThemeProvider } from './hooks/useTheme';
-import { AuthProvider, useAuth } from './hooks/useAuth';
-import Sidebar from './components/Sidebar';
-import TopHeader from './components/TopHeader';
-import Landing from './pages/Landing';
-import Dashboard from './pages/Dashboard';
-import Trends from './pages/Trends';
-import SkillGap from './pages/SkillGap';
-import Jobs from './pages/Jobs';
-import Tracker from './pages/Tracker';
-import Alerts from './pages/Alerts';
-import Login from './pages/Login';
+import { AuthProvider } from './hooks/useAuth';
 
-function ProtectedRoute({ children }) {
-  const { user, loading } = useAuth();
-  if (loading) return <div className="page-wrapper" style={{ textAlign: 'center', paddingTop: '100px' }}>Loading...</div>;
-  // Allow access even without auth (mock mode / demo)
-  return children;
+/* Eagerly load nav — always visible */
+import MobileNav from './components/MobileNav';
+import Sidebar from './components/Sidebar';
+
+/* Lazy load every page */
+const Landing = lazy(() => import('./pages/Landing'));
+const Login = lazy(() => import('./pages/Login'));
+const Dashboard = lazy(() => import('./pages/Dashboard'));
+const Trends = lazy(() => import('./pages/Trends'));
+const SkillGap = lazy(() => import('./pages/SkillGap'));
+const Jobs = lazy(() => import('./pages/Jobs'));
+const Tracker = lazy(() => import('./pages/Tracker'));
+const Alerts = lazy(() => import('./pages/Alerts'));
+const News = lazy(() => import('./pages/News'));
+const Resume = lazy(() => import('./pages/Resume'));
+
+function PageLoader() {
+  return (
+    <div className="page-wrapper">
+      <div className="skeleton" style={{ height: 28, width: '40%', marginBottom: 8 }} />
+      <div className="skeleton" style={{ height: 16, width: '60%', marginBottom: 24 }} />
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+        <div className="skeleton" style={{ height: 100 }} />
+        <div className="skeleton" style={{ height: 100 }} />
+      </div>
+      <div className="skeleton" style={{ height: 200, marginTop: 16 }} />
+    </div>
+  );
 }
 
 function AppContent() {
   const location = useLocation();
-  const isLanding = location.pathname === '/';
-  const isLogin = location.pathname === '/login';
-  const showSidebar = !isLanding && !isLogin;
+  const isPublic = location.pathname === '/' || location.pathname === '/login';
 
-  if (!showSidebar) {
+  if (isPublic) {
     return (
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/login" element={<Login />} />
-      </Routes>
+      <Suspense fallback={<PageLoader />}>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </Suspense>
     );
   }
 
@@ -38,16 +52,20 @@ function AppContent() {
     <div className="app-layout">
       <Sidebar />
       <main className="main-content">
-        <TopHeader />
-        <Routes>
-          <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-          <Route path="/trends" element={<ProtectedRoute><Trends /></ProtectedRoute>} />
-          <Route path="/skill-gap" element={<ProtectedRoute><SkillGap /></ProtectedRoute>} />
-          <Route path="/jobs" element={<ProtectedRoute><Jobs /></ProtectedRoute>} />
-          <Route path="/tracker" element={<ProtectedRoute><Tracker /></ProtectedRoute>} />
-          <Route path="/alerts" element={<ProtectedRoute><Alerts /></ProtectedRoute>} />
-        </Routes>
+        <Suspense fallback={<PageLoader />}>
+          <Routes>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/trends" element={<Trends />} />
+            <Route path="/skill-gap" element={<SkillGap />} />
+            <Route path="/jobs" element={<Jobs />} />
+            <Route path="/tracker" element={<Tracker />} />
+            <Route path="/alerts" element={<Alerts />} />
+            <Route path="/news" element={<News />} />
+            <Route path="/resume" element={<Resume />} />
+          </Routes>
+        </Suspense>
       </main>
+      <MobileNav />
     </div>
   );
 }

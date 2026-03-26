@@ -3,165 +3,63 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  overflow: hidden;
+  padding: 20px;
+  background: var(--bg-primary);
 }
 
-.login-bg {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-.login-orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.35;
-}
-.login-orb-1 {
-  width: 500px;
-  height: 500px;
-  background: #6c5ce7;
-  top: -150px;
-  left: -100px;
-  animation: float 10s ease-in-out infinite;
-}
-.login-orb-2 {
-  width: 400px;
-  height: 400px;
-  background: #00cec9;
-  bottom: -100px;
-  right: -80px;
-  animation: float 12s ease-in-out infinite reverse;
-}
-.login-grid-overlay {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(108, 92, 231, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(108, 92, 231, 0.03) 1px, transparent 1px);
-  background-size: 60px 60px;
-}
-
-.login-container {
-  display: flex;
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 40px 32px;
-  gap: 60px;
-  position: relative;
-  z-index: 2;
-  align-items: center;
-}
-
-/* Branding side */
-.login-branding {
-  flex: 1;
-  animation: fadeInUp 0.6s ease;
-}
-.login-logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 32px;
-  text-decoration: none;
-}
-.login-logo-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius-md);
-  background: var(--gradient-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-}
-.login-logo-text {
-  font-size: 24px;
-  font-weight: 700;
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.login-title {
-  font-size: 32px;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 12px;
-}
-.login-subtitle {
-  font-size: 15px;
-  color: var(--text-secondary);
-  line-height: 1.65;
-  margin-bottom: 32px;
-}
-.login-features {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.login-feature {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 14px;
-  color: var(--text-secondary);
-  animation: fadeInUp 0.5s ease both;
-}
-
-/* Form side */
-.login-form-wrapper {
-  width: 380px;
-  flex-shrink: 0;
-}
 .login-card {
-  padding: 32px;
-  animation: scaleIn 0.4s ease;
+  width: 100%;
+  max-width: 420px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 32px 24px;
+  box-shadow: var(--shadow-md);
 }
-.login-card-header {
+
+.login-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  transition: color var(--transition);
+}
+.login-back:hover { color: var(--text-primary); }
+
+.login-header {
+  text-align: center;
   margin-bottom: 24px;
 }
-.login-tabs {
-  display: flex;
-  background: var(--bg-input);
-  border-radius: var(--radius-md);
-  padding: 4px;
+.login-header h1 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-top: 16px;
+  margin-bottom: 4px;
 }
-.login-tab {
-  flex: 1;
-  padding: 10px;
-  border: none;
-  background: none;
-  border-radius: var(--radius-sm);
+.login-header p {
   font-size: 14px;
-  font-weight: 500;
-  color: var(--text-muted);
-  cursor: pointer;
-  transition: all var(--transition-fast);
-}
-.login-tab.active {
-  background: var(--accent-primary);
-  color: white;
-  box-shadow: 0 2px 10px rgba(108, 92, 231, 0.3);
+  color: var(--text-secondary);
 }
 
-.login-form {
+.login-oauth {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 10px;
+  margin-bottom: 20px;
 }
-
-.login-google-btn, .login-github-btn {
-  width: 100%;
+.login-oauth-btn {
   justify-content: center;
+  font-weight: 500;
 }
+.login-oauth-btn:hover { background: var(--bg-muted); }
 
 .login-divider {
   display: flex;
   align-items: center;
   gap: 12px;
+  margin-bottom: 20px;
   color: var(--text-muted);
   font-size: 12px;
 }
@@ -170,74 +68,35 @@
   content: '';
   flex: 1;
   height: 1px;
-  background: var(--border-subtle);
+  background: var(--border);
 }
 
-.login-field label {
-  display: block;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-secondary);
-  margin-bottom: 6px;
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
-.login-submit-btn {
-  width: 100%;
-  margin-top: 4px;
-  justify-content: center;
-}
-
-.login-footer {
+.login-switch {
   text-align: center;
   margin-top: 20px;
-  padding-top: 20px;
-  border-top: 1px solid var(--border-subtle);
   font-size: 13px;
   color: var(--text-secondary);
 }
+.login-switch button {
+  color: var(--accent);
+  font-weight: 500;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 4px;
+  font-size: 13px;
+  transition: color var(--transition);
+}
+.login-switch button:hover { color: var(--accent-hover); }
 
-@media (max-width: 768px) {
-  .login-container {
-    flex-direction: column;
-    gap: 32px;
-  }
-  .login-form-wrapper {
-    width: 100%;
-  }
-  .login-branding { text-align: center; }
-  .login-features { align-items: center; }
+.login-demo {
+  margin-top: 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
 }
-
-/* ===== LIGHT THEME ===== */
-[data-theme="light"] .login-page {
-  background: #f5f5fa;
-}
-[data-theme="light"] .login-orb {
-  opacity: 0.12;
-}
-[data-theme="light"] .login-grid-overlay {
-  background-image:
-    linear-gradient(rgba(108, 92, 231, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(108, 92, 231, 0.04) 1px, transparent 1px);
-}
-[data-theme="light"] .login-card {
-  background: rgba(255, 255, 255, 0.92);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
-}
-[data-theme="light"] .login-tab {
-  color: var(--text-secondary);
-}
-[data-theme="light"] .login-tab.active {
-  color: white;
-}
-[data-theme="light"] .login-google-btn,
-[data-theme="light"] .login-github-btn {
-  background: #f0eef6;
-  color: var(--text-primary);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-}
-[data-theme="light"] .login-google-btn:hover,
-[data-theme="light"] .login-github-btn:hover {
-  background: #e8e5f5;
-}
-
