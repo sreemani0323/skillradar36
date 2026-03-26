@@ -1,0 +1,185 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans)}
+.doc{padding:1.5rem 0 2rem}
+.section{margin-bottom:2.5rem}
+.sec-tag{display:inline-block;font-size:11px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;padding:3px 10px;border-radius:4px;margin-bottom:12px}
+.tag-red{background:#FCEBEB;color:#A32D2D}
+.tag-teal{background:#E1F5EE;color:#0F6E56}
+.tag-blue{background:#E6F1FB;color:#185FA5}
+.tag-purple{background:#EEEDFE;color:#3C3489}
+.tag-amber{background:#FAEEDA;color:#854F0B}
+.tag-green{background:#EAF3DE;color:#3B6D11}
+.sec-title{font-size:20px;font-weight:500;color:var(--color-text-primary);margin-bottom:8px}
+.sec-body{font-size:14px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:14px}
+.pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem}
+.pain-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px}
+.pain-num{font-size:22px;font-weight:500;color:#E24B4A;margin-bottom:4px}
+.pain-title{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px}
+.pain-desc{font-size:12px;color:var(--color-text-secondary);line-height:1.6}
+.sol-steps{display:flex;flex-direction:column;gap:8px;margin-bottom:1rem}
+.step{display:flex;gap:12px;align-items:flex-start;background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:12px 14px}
+.step-num{width:24px;height:24px;border-radius:50%;background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.step-body{}
+.step-title{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:3px}
+.step-desc{font-size:12px;color:var(--color-text-secondary);line-height:1.6}
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem}
+.feat-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px;cursor:pointer;transition:border-color .15s}
+.feat-card:hover{border-color:var(--color-border-primary)}
+.feat-dot{width:8px;height:8px;border-radius:50%;margin-bottom:8px}
+.feat-title{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:5px}
+.feat-desc{font-size:12px;color:var(--color-text-secondary);line-height:1.6}
+.feat-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
+.ftag{font-size:10px;padding:2px 7px;border-radius:4px;background:var(--color-background-secondary);color:var(--color-text-secondary)}
+.divider{height:0.5px;background:var(--color-border-tertiary);margin:2rem 0}
+.value-row{display:flex;gap:10px;margin-bottom:1rem}
+.val-card{flex:1;background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:14px;text-align:center}
+.val-big{font-size:24px;font-weight:500;color:var(--color-text-primary)}
+.val-label{font-size:11px;color:var(--color-text-secondary);margin-top:4px}
+.who-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:1rem}
+.who-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:12px}
+.who-title{font-size:12px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px}
+.who-desc{font-size:11px;color:var(--color-text-secondary);line-height:1.5}
+.diff-table{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:1rem}
+.diff-table th{text-align:left;padding:8px 10px;background:var(--color-background-secondary);color:var(--color-text-secondary);font-weight:500;border-bottom:0.5px solid var(--color-border-tertiary)}
+.diff-table td{padding:8px 10px;border-bottom:0.5px solid var(--color-border-tertiary);color:var(--color-text-primary)}
+.diff-table td:first-child{color:var(--color-text-secondary)}
+.yes{color:#0F6E56;font-weight:500}
+.no{color:#A32D2D}
+</style>
+
+<div class="doc">
+
+<div class="section">
+  <div class="sec-tag tag-red">Problem statement</div>
+  <div class="sec-title">B.Tech students are applying blind</div>
+  <div class="sec-body">Every year, thousands of 3rd-year engineering students in India start applying for internships with no clear picture of what the industry actually wants right now. They rely on outdated advice, generic job boards, and guesswork — and then wonder why they aren't getting calls back.</div>
+  <div class="pain-grid">
+    <div class="pain-card">
+      <div class="pain-num">01</div>
+      <div class="pain-title">No real-time skill visibility</div>
+      <div class="pain-desc">No single place shows which skills are trending across LinkedIn, Internshala, Naukri, and 20+ platforms right now — not last year, not last month, but today.</div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-num">02</div>
+      <div class="pain-title">Generic job listings, zero personalization</div>
+      <div class="pain-desc">Existing job boards show you every listing. None of them tell you "here are the 3 skills you're missing to match 80% of AI internships."</div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-num">03</div>
+      <div class="pain-title">No trend data — only snapshots</div>
+      <div class="pain-desc">A student can't tell if "LangChain" is a skill worth learning this month or if it peaked 6 months ago. Historical trend data simply doesn't exist for free.</div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-num">04</div>
+      <div class="pain-title">No application workflow tool for students</div>
+      <div class="pain-desc">Students track applications in messy spreadsheets or WhatsApp messages. There's no lightweight tracker that lives alongside the job data itself.</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <div class="sec-tag tag-teal">Our solution</div>
+  <div class="sec-title">SkillRadar — the internship intelligence platform</div>
+  <div class="sec-body">An automated, free-to-run web platform that scrapes internship listings across 20+ job platforms every X days, extracts in-demand skills using NLP, visualizes demand trends over time, and gives each student a personalized skill gap report — all hosted for ₹0/month.</div>
+  <div class="sol-steps">
+    <div class="step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Automated multi-platform scraping</div><div class="step-desc">GitHub Actions triggers Python scripts on a cron schedule. Indeed Publisher API, Internshala RSS, Remotive JSON, and Apify actors for Naukri/Shine feed fresh listings every X days automatically — no manual effort.</div></div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-body"><div class="step-title">NLP-powered skill extraction</div><div class="step-desc">Every job description is processed by spaCy + a curated 500-skill keyword list. Skills are tagged, counted, and frequency-ranked across domains: AI/ML, Full Stack, Data Science, LLM/GenAI, Cybersecurity.</div></div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Time-series storage for trend data</div><div class="step-desc">Each scrape writes a dated snapshot to Supabase. This is what makes trend graphs possible — skill demand curves over weeks, months, and semesters. No competing free tool provides this.</div></div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Personalized skill gap analysis</div><div class="step-desc">A user enters their current skills. The platform scores every job against their profile, shows their match % per domain, and surfaces exactly which skills to learn next for the highest ROI.</div></div></div>
+    <div class="step"><div class="step-num">5</div><div class="step-body"><div class="step-title">Smart alerts — not noise</div><div class="step-desc">Instead of emailing every new job, Supabase Edge Functions only fire when a new listing matches a user's skill profile above a configurable threshold. Email via Resend or Telegram bot.</div></div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <div class="sec-tag tag-blue">Website features</div>
+  <div class="sec-title">What the platform includes — 6 core modules</div>
+  <div class="feat-grid">
+    <div class="feat-card" onclick="sendPrompt('How do I build the skill trends dashboard with Recharts?')">
+      <div class="feat-dot" style="background:#185FA5"></div>
+      <div class="feat-title">Live skill demand dashboard</div>
+      <div class="feat-desc">Bar charts and line charts showing top skills by domain, ranked by mention frequency across all scraped listings. Filter by domain — AI/ML, Full Stack, Data Science, LLM, Cybersecurity.</div>
+      <div class="feat-tags"><span class="ftag">Recharts</span><span class="ftag">real-time</span><span class="ftag">filterable</span></div>
+    </div>
+    <div class="feat-card" onclick="sendPrompt('How does the skill gap analyzer component work in detail?')">
+      <div class="feat-dot" style="background:#534AB7"></div>
+      <div class="feat-title">Personalized skill gap analyzer</div>
+      <div class="feat-desc">User inputs their skills. System computes a match score per domain against current listings. Shows: skills you have, skills you're missing, and which gap to close first for maximum internship matches.</div>
+      <div class="feat-tags"><span class="ftag">personalized</span><span class="ftag">scoring algo</span><span class="ftag">actionable</span></div>
+    </div>
+    <div class="feat-card" onclick="sendPrompt('How do I build the skill trend over time graph?')">
+      <div class="feat-dot" style="background:#BA7517"></div>
+      <div class="feat-title">Skill trend tracker (over time)</div>
+      <div class="feat-desc">Line charts showing skill demand curves across multiple scrape cycles. See if LangChain is rising, if Angular is declining, or if Python has plateaued — data no free platform currently shows.</div>
+      <div class="feat-tags"><span class="ftag">time-series</span><span class="ftag">snapshots DB</span><span class="ftag">unique feature</span></div>
+    </div>
+    <div class="feat-card" onclick="sendPrompt('How do I build the jobs browser with filters in React?')">
+      <div class="feat-dot" style="background:#0F6E56"></div>
+      <div class="feat-title">Unified jobs browser</div>
+      <div class="feat-desc">All scraped listings in one searchable, filterable table. Filter by domain, location, remote/onsite, platform source, and required skills. Each listing links directly to the apply page.</div>
+      <div class="feat-tags"><span class="ftag">20+ platforms</span><span class="ftag">search</span><span class="ftag">filters</span></div>
+    </div>
+    <div class="feat-card" onclick="sendPrompt('How do I build a Kanban application tracker in React?')">
+      <div class="feat-dot" style="background:#D85A30"></div>
+      <div class="feat-title">Application tracker (Kanban)</div>
+      <div class="feat-desc">Lightweight drag-and-drop Kanban board: Saved → Applied → Interview → Offer → Rejected. Attach notes, interview dates, and contact info to each card. Stored per-user in Supabase.</div>
+      <div class="feat-tags"><span class="ftag">Kanban</span><span class="ftag">per-user DB</span><span class="ftag">notes</span></div>
+    </div>
+    <div class="feat-card" onclick="sendPrompt('How do I build smart alerts with Supabase Edge Functions and Resend?')">
+      <div class="feat-dot" style="background:#3B6D11"></div>
+      <div class="feat-title">Smart alerts engine</div>
+      <div class="feat-desc">User sets their skill profile + alert threshold. Each scrape cycle, the system matches new listings against profiles and fires email (Resend) or Telegram notifications only on high-match jobs.</div>
+      <div class="feat-tags"><span class="ftag">Resend email</span><span class="ftag">Telegram bot</span><span class="ftag">threshold-based</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <div class="sec-tag tag-purple">Who it's for</div>
+  <div class="sec-title">Target users</div>
+  <div class="who-grid">
+    <div class="who-card"><div class="who-title">3rd / 4th year B.Tech students</div><div class="who-desc">Actively seeking internships, need to know exactly what to learn to get shortlisted this semester.</div></div>
+    <div class="who-card"><div class="who-title">2nd year students (prep mode)</div><div class="who-desc">Want to invest time in the right skills 12–18 months before placements begin.</div></div>
+    <div class="who-card"><div class="who-title">College placement officers</div><div class="who-desc">Need aggregated data on what companies want to guide the curriculum and training programs.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <div class="sec-tag tag-amber">Competitive advantage</div>
+  <div class="sec-title">Why this beats existing options</div>
+  <table class="diff-table">
+    <thead><tr><th>Feature</th><th>LinkedIn / Naukri</th><th>Internshala</th><th>SkillRadar</th></tr></thead>
+    <tbody>
+      <tr><td>Aggregates 20+ platforms</td><td class="no">No</td><td class="no">No</td><td class="yes">Yes</td></tr>
+      <tr><td>Skill demand ranking</td><td class="no">No</td><td class="no">No</td><td class="yes">Yes</td></tr>
+      <tr><td>Skill trend over time</td><td class="no">No</td><td class="no">No</td><td class="yes">Yes</td></tr>
+      <tr><td>Personalized skill gap</td><td class="no">No</td><td class="no">No</td><td class="yes">Yes</td></tr>
+      <tr><td>Application tracker</td><td class="no">Partial</td><td class="no">No</td><td class="yes">Yes</td></tr>
+      <tr><td>Smart threshold alerts</td><td class="no">No</td><td class="no">No</td><td class="yes">Yes</td></tr>
+      <tr><td>Free to use</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <div class="sec-tag tag-green">Impact metrics (projected)</div>
+  <div class="value-row">
+    <div class="val-card"><div class="val-big">20+</div><div class="val-label">platforms scraped</div></div>
+    <div class="val-card"><div class="val-big">500+</div><div class="val-label">skills tracked</div></div>
+    <div class="val-card"><div class="val-big">₹0</div><div class="val-label">monthly running cost</div></div>
+    <div class="val-card"><div class="val-big">7 days</div><div class="val-label">typical build time</div></div>
+  </div>
+</div>
+
+</div>

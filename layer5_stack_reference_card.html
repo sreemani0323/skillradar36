@@ -1,0 +1,85 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.stack-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:1rem 0}
+.stack-section{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px}
+.sec-label{font-size:11px;font-weight:500;color:var(--color-text-secondary);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+.tool-row{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:0.5px solid var(--color-border-tertiary)}
+.tool-row:last-child{border-bottom:none}
+.tool-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.tool-name{font-size:13px;font-weight:500;color:var(--color-text-primary);min-width:110px}
+.tool-detail{font-size:12px;color:var(--color-text-secondary);flex:1}
+.tool-badge{font-size:10px;padding:2px 7px;border-radius:4px;flex-shrink:0;white-space:nowrap}
+.free{background:#E1F5EE;color:#085041}
+.paid{background:#FAEEDA;color:#633806}
+.fullrow{grid-column:1/-1}
+</style>
+<div class="stack-grid">
+
+<div class="stack-section">
+<div class="sec-label">Scheduler / CI</div>
+<div class="tool-row"><div class="tool-dot" style="background:#534AB7"></div><div class="tool-name">GitHub Actions</div><div class="tool-detail">cron schedule, secrets, Python env</div><div class="tool-badge free">2000 min/mo free</div></div>
+<div class="tool-row"><div class="tool-dot" style="background:#444441"></div><div class="tool-name">Python 3.11</div><div class="tool-detail">ubuntu-latest runner</div><div class="tool-badge free">free</div></div>
+<div class="tool-row"><div class="tool-dot" style="background:#444441"></div><div class="tool-name">requirements.txt</div><div class="tool-detail">httpx, feedparser, spaCy, pandas</div><div class="tool-badge free">free</div></div>
+</div>
+
+<div class="stack-section">
+<div class="sec-label">Scraping / Data Ingestion</div>
+<div class="tool-row"><div class="tool-dot" style="background:#D85A30"></div><div class="tool-name">httpx</div><div class="tool-detail">async HTTP client for APIs</div><div class="tool-badge free">free</div></div>
+<div class="tool-row"><div class="tool-dot" style="background:#D85A30"></div><div class="tool-name">feedparser</div><div class="tool-detail">RSS / Atom feed parsing</div><div class="tool-badge free">free</div></div>
+<div class="tool-row"><div class="tool-dot" style="background:#D85A30"></div><div class="tool-name">BeautifulSoup4</div><div class="tool-detail">HTML scraping fallback</div><div class="tool-badge free">free</div></div>
+<div class="tool-row"><div class="tool-dot" style="background:#993C1D"></div><div class="tool-name">Apify Python SDK</div><div class="tool-detail">Naukri, Shine actors</div><div class="tool-badge paid">$5 credit</div></div>
+</div>
+
+<div class="stack-section">
+<div class="sec-label">NLP / Skill extraction</div>
+<div class="tool-row"><div class="tool-dot" style="background:#0F6E56"></div><div class="tool-name">spaCy en_core_web_sm</div><div class="tool-detail">NER for role / company names</div><div class="tool-badge free">free</div></div>
+<div class="tool-row"><div class="tool-dot" style="background:#0F6E56"></div><div class="tool-name">custom_skills.json</div><div class="tool-detail">curated keyword list ~500 skills</div><div class="tool-badge free">free</div></div>
+<div class="tool-row"><div class="tool-dot" style="background:#0F6E56"></div><div class="tool-name">pandas</div><div class="tool-detail">dedup, freq counts, snapshots</div><div class="tool-badge free">free</div></div>
+</div>
+
+<div class="stack-section">
+<div class="sec-label">Database (Supabase)</div>
+<div class="tool-row"><div class="tool-dot" style="background:#BA7517"></div><div class="tool-name">PostgreSQL</div><div class="tool-detail">jobs, skills, users, snapshots</div><div class="tool-badge free">500MB free</div></div>
+<div class="tool-row"><div class="tool-dot" style="background:#BA7517"></div><div class="tool-name">Supabase Auth</div><div class="tool-detail">magic link + Google OAuth</div><div class="tool-badge free">50k users free</div></div>
+<div class="tool-row"><div class="tool-dot" style="background:#BA7517"></div><div class="tool-name">Edge Functions</div><div class="tool-detail">Deno, triggers on insert</div><div class="tool-badge free">500k calls/mo free</div></div>
+<div class="tool-row"><div class="tool-dot" style="background:#BA7517"></div><div class="tool-name">Realtime</div><div class="tool-detail">live dashboard updates</div><div class="tool-badge free">free</div></div>
+</div>
+
+<div class="stack-section">
+<div class="sec-label">Frontend</div>
+<div class="tool-row"><div class="tool-dot" style="background:#185FA5"></div><div class="tool-name">React 18 + Vite</div><div class="tool-detail">SPA, fast HMR</div><div class="tool-badge free">free</div></div>
+<div class="tool-row"><div class="tool-dot" style="background:#185FA5"></div><div class="tool-name">React Router v6</div><div class="tool-detail">5 pages, protected routes</div><div class="tool-badge free">free</div></div>
+<div class="tool-row"><div class="tool-dot" style="background:#185FA5"></div><div class="tool-name">Recharts</div><div class="tool-detail">BarChart, LineChart, RadarChart</div><div class="tool-badge free">free</div></div>
+<div class="tool-row"><div class="tool-dot" style="background:#185FA5"></div><div class="tool-name">Tailwind CSS v3</div><div class="tool-detail">utility-first styling</div><div class="tool-badge free">free</div></div>
+<div class="tool-row"><div class="tool-dot" style="background:#185FA5"></div><div class="tool-name">@supabase/supabase-js</div><div class="tool-detail">DB + Auth client</div><div class="tool-badge free">free</div></div>
+</div>
+
+<div class="stack-section">
+<div class="sec-label">Hosting &amp; Notifications</div>
+<div class="tool-row"><div class="tool-dot" style="background:#3B6D11"></div><div class="tool-name">Vercel</div><div class="tool-detail">auto-deploy from GitHub</div><div class="tool-badge free">free</div></div>
+<div class="tool-row"><div class="tool-dot" style="background:#3B6D11"></div><div class="tool-name">Resend</div><div class="tool-detail">transactional email alerts</div><div class="tool-badge free">100/day free</div></div>
+<div class="tool-row"><div class="tool-dot" style="background:#3B6D11"></div><div class="tool-name">python-telegram-bot</div><div class="tool-detail">instant job match alerts</div><div class="tool-badge free">free</div></div>
+<div class="tool-row"><div class="tool-dot" style="background:#3B6D11"></div><div class="tool-name">GitHub (repo)</div><div class="tool-detail">source, secrets, CI config</div><div class="tool-badge free">free</div></div>
+</div>
+
+<div class="stack-section fullrow" style="background:var(--color-background-secondary)">
+<div class="sec-label">Recommended folder structure</div>
+<div style="font-family:var(--font-mono);font-size:12px;color:var(--color-text-secondary);line-height:1.9">
+skillradar/<br>
+&nbsp;&nbsp;scraper/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← Python scripts + requirements.txt<br>
+&nbsp;&nbsp;&nbsp;&nbsp;fetch_indeed.py<br>
+&nbsp;&nbsp;&nbsp;&nbsp;fetch_rss.py<br>
+&nbsp;&nbsp;&nbsp;&nbsp;extract_skills.py<br>
+&nbsp;&nbsp;&nbsp;&nbsp;push_to_supabase.py<br>
+&nbsp;&nbsp;&nbsp;&nbsp;custom_skills.json&nbsp;&nbsp;← your curated skill keyword list<br>
+&nbsp;&nbsp;frontend/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← React + Vite app<br>
+&nbsp;&nbsp;&nbsp;&nbsp;src/pages/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← Dashboard, SkillGap, Jobs, AppTracker<br>
+&nbsp;&nbsp;&nbsp;&nbsp;src/hooks/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← useSupabase.js, useSkills.js<br>
+&nbsp;&nbsp;&nbsp;&nbsp;src/utils/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← skillMatchScore.js<br>
+&nbsp;&nbsp;.github/workflows/&nbsp;← scraper.yml cron job<br>
+&nbsp;&nbsp;supabase/migrations/← SQL schema files
+</div>
+</div>
+
+</div>
